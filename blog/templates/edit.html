@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+{%block content%}
+    <form action="{%url 'urlupdate' c.id%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        제목: <input type="text" name="utitle" value="{{c.title}}" ><br>
+        작성자: <input type="text" name="uwriter" value="{{c.writer}}"><br>
+        본문: <textarea name="ubody" cols="50" rows="30">{{c.body}}</textarea><br>
+        사진: <input type="file" name="uimage" value="{{c.image}}">
+        <button type="submit">제출</button>
+    </form>
+{%endblock%}

@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%block content%}
+    <h2>{{b.title}}</h2>
+    <p>{{b.writer}}</p>
+    <p>{{b.date}}</p>
+    {%if b.image%}
+    <p><img src="{{b.image.url}}" alt="" width="200" height="200"></p>
+    {%endif%}
+    <p>{{b.body}}</p>
+    <a href="{%url 'urlhome'%}">home</a>
+    <a href="{%url 'urledit' b.id%}">update</a>
+    <a href="{%url 'urldelete' b.id%}">delete</a>
+{%endblock%}

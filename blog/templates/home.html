@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{%block content%}
+{%if user.is_authenticated%}
+{{user.location}}에 사는 {{user.university}}에 다니는 {{user.nickname}}님 안녕하세요.
+{%endif%}
+<br>
+<a href="?search=true&writer={{user.nickname}}">내가 쓴 글</a>
+    <hr>
+    {%for a in blogs%}
+    <h4>{{a.title}}</h4>
+    <p>{{a.writer}}</p>
+    <p>{{a.summary}}</p>
+    <a href="{%url 'urldetail' a.id%}">more</a>
+    <hr>
+    {%endfor%}
+
+    {%if blogs.has_previous%}
+    <a href="?page=1">처음</a>
+    <a href="?page={{blogs.previous_page_number}}">이전</a>
+    {% endif %}
+
+    <span>{{blogs.number}}</span>
+    <span>of</span>
+    <span>{{blogs.paginator.num_pages}}</span>
+    
+    {%if blogs.has_next%}
+    <a href="?page={{blogs.next_page_number}}">다음</a>
+    <a href="?page={{blogs.paginator.num_pages}}">마지막</a>
+    {%endif%}
+
+{%endblock%}
